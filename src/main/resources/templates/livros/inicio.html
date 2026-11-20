@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="...">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Biblioteca</title>
+    <meta charset="UTF-8">
+    <title>Livros | Biblioteca</title>
 </head>
 <body>
-<h1 th:text="'Sistema de Biblioteca">
-    Bem vindo ao Sistema de Biblioteca
-</h1>
+<h1>Livros</h1>
 <nav>
-    <a th:href="@{/livros}">
-        Livros
-    </a>
-    <a th:href="@{/Autores}">
-        Autores
-    </a>
-    <a th:href="@{/Categorias}">
-        Categorias
-    </a>
-    <a th:href="@{/Usuarios}">
-        Usuarios
-    </a>
-    <a th:href="@{/Emprestimos}">
-        Emprestimos
-    </a>
+    <a th:href="@{/autores}">Autores</a>
+    <a th:href="@{/categorias}">Categorias</a>
+    <a th:href="@{/usuarios}">Usuários</a>
+    <a th:href="@{/emprestimos}">Empréstimos</a>
 </nav>
+<p th:if="${mensagem}" th:text="${mensagem}"></p>
+<p th:if="${erro}" th:text="${erro}"></p>
+<p><a th:href="@{/livros/novo}">Cadastrar livro</a></p>
+<p th:if="${#lists.isEmpty(livros)}">Nenhum livro cadastrado.</p>
+<table th:unless="${#lists.isEmpty(livros)}">
+    <thead>
+    <tr><th>ISBN</th><th>Título</th><th>Autor</th><th>Categoria</th><th>Status</th><th>Ações</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="livro : ${livros}">
+        <td th:text="${livro.isbn}"></td>
+        <td th:text="${livro.titulo}"></td>
+        <td th:text="${livro.autor}"></td>
+        <td th:text="${livro.categoria.nome}"></td>
+        <td th:text="${livro.disponivel ? 'Disponível' : 'Emprestado'}"></td>
+        <td>
+            <a th:href="@{/livros/{isbn}/editar(isbn=${livro.isbn})}">Editar</a>
+            <form th:action="@{/livros/{isbn}/excluir(isbn=${livro.isbn})}" method="post">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

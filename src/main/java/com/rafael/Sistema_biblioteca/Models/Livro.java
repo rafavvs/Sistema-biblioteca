@@ -1,4 +1,4 @@
-package Models;
+package com.rafael.Sistema_biblioteca.Models;
 
 public class Livro {
     private String titulo;
@@ -53,5 +53,12 @@ public class Livro {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    @Override
+    public String toString() {
+        String status = disponivel ? "Disponível" : "Emprestado";
+        return String.format("ISBN: %s | Título: %s | Autor: %s | Categoria: %s | Status: %s",
+                isbn, titulo, autor, categoria.getNome(), status);
     }
 }

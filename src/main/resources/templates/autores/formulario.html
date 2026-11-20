@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title th:text="${autor == null ? 'Novo autor' : 'Editar autor'}">Autor</title></head>
+<body>
+<h1 th:text="${autor == null ? 'Cadastrar autor' : 'Editar autor'}">Autor</h1>
+<form th:action="${autor == null ? '/autores/salvar' : '/autores/' + autor.id}" method="post">
+    <label>Nome <input name="nome" required th:value="${autor == null ? '' : autor.nome}"></label>
+    <label>Nacionalidade <input name="nacionalidade" required th:value="${autor == null ? '' : autor.nacionalidade}"></label>
+    <button type="submit">Salvar</button>
+</form>
+<a th:href="@{/autores}">Voltar</a>
+</body>
+</html>

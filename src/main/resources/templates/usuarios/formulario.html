@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title th:text="${usuario == null ? 'Novo usuário' : 'Editar usuário'}">Usuário</title></head>
+<body>
+<h1 th:text="${usuario == null ? 'Cadastrar usuário' : 'Editar usuário'}">Usuário</h1>
+<form th:action="${usuario == null ? '/usuarios/salvar' : '/usuarios/' + usuario.id}" method="post">
+    <label>Nome <input name="nome" required th:value="${usuario == null ? '' : usuario.nome}"></label>
+    <label>CPF <input name="cpf" type="number" required th:value="${usuario == null ? '' : usuario.cpf}"></label>
+    <label>E-mail <input name="email" type="email" required th:value="${usuario == null ? '' : usuario.email}"></label>
+    <label>Matrícula <input name="matricula" type="number" required th:value="${usuario == null ? '' : usuario.matricula}"></label>
+    <button type="submit">Salvar</button>
+</form>
+<a th:href="@{/usuarios}">Voltar</a>
+</body>
+</html>

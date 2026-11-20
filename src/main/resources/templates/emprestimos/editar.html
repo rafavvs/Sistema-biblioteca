@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Editar empréstimo</title></head>
+<body>
+<h1>Editar empréstimo</h1>
+<form th:action="@{/emprestimos/{id}(id=${emprestimo.id})}" method="post">
+    <label>Devolução prevista
+        <input name="dataDevolucaoPrevista" type="date" required
+               th:value="${emprestimo.dataDevolucaoPrevista}">
+    </label>
+    <button type="submit">Salvar</button>
+</form>
+<a th:href="@{/emprestimos}">Voltar</a>
+</body>
+</html>

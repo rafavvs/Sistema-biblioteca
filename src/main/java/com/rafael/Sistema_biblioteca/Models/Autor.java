@@ -1,4 +1,4 @@
-package Models;
+package com.rafael.Sistema_biblioteca.Models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,10 @@ public class Autor {
     private String nome;
     private String nacionalidade;
     private List<Livro> obrasPublicadas;
+
+    public Autor() {
+        this.obrasPublicadas = new ArrayList<>();
+    }
 
     public Autor(int id, String nome, String nacionalidade, List<Livro> obrasPublicadas) {
         this.id = id;
@@ -46,5 +50,10 @@ public class Autor {
 
     public void setObrasPublicadas(List<Livro> obrasPublicadas) {
         this.obrasPublicadas = obrasPublicadas;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + nome + " (" + nacionalidade + ") | Obras cadastradas: " + obrasPublicadas.size();
     }
 }

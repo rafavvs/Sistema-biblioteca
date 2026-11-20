@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema de Biblioteca</title>
+    <style>
+        body {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            color: #222;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        header, section {
+            margin-bottom: 24px;
+            padding: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        h1, h2 { margin-top: 0; }
+
+        nav a {
+            display: inline-block;
+            margin: 4px 12px 4px 0;
+        }
+
+        .fluxo {
+            padding-left: 22px;
+        }
+
+        code {
+            padding: 2px 5px;
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Sistema de Biblioteca</h1>
+    <p>Projeto acadêmico para demonstrar o padrão MVC com Spring MVC e Thymeleaf.</p>
+</header>
+
+<main>
+    <section>
+        <h2>Como o MVC funciona neste projeto</h2>
+        <ol class="fluxo">
+            <li><strong>Requisição:</strong> o navegador acessa uma rota, como <code>/livros</code>.</li>
+            <li><strong>Controller:</strong> recebe a requisição, executa a ação e seleciona uma página. Por exemplo, <code>LivroController</code>.</li>
+            <li><strong>Model:</strong> os objetos <code>Livro</code>, <code>Autor</code> e os demais representam os dados. O controller os disponibiliza para a página usando o <code>Model</code> do Spring.</li>
+            <li><strong>View:</strong> o Thymeleaf combina a página HTML com os dados e devolve o resultado ao navegador.</li>
+        </ol>
+        <p>Exemplo: <code>GET /livros</code> → <code>LivroController</code> → dados dos livros → <code>templates/livros/inicio.html</code>.</p>
+        <p>Os cadastros deste projeto ficam em listas na memória e não são mantidos após reiniciar a aplicação.</p>
+    </section>
+
+    <section>
+        <h2>Páginas do sistema</h2>
+        <nav aria-label="Navegação principal">
+            <a href="http://localhost:5500/livros/inicio" th:href="@{/livros/inicio}">Livros</a>
+            <a href="http://localhost:5500/autores/inicio" th:href="@{/autores/inicio}">Autores</a>
+            <a href="http://localhost:5500/categorias/inicio" th:href="@{/categorias/inicio}">Categorias</a>
+            <a href="http://localhost:5500/usuarios/inicio" th:href="@{/usuarios/inicio}">Usuários</a>
+            <a href="http://localhost:5500/emprestimos/inicio" th:href="@{/emprestimos/inicio}">Empréstimos</a>
+        </nav>
+    </section>
+</main>
+</body>
+</html>

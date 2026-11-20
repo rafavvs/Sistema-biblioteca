@@ -1,4 +1,4 @@
-package Models;
+package com.rafael.Sistema_biblioteca.Models;
 
 public class Usuario {
     private int id;
@@ -53,5 +53,10 @@ public class Usuario {
 
     public void setMatricula(int matricula) {
         this.matricula = matricula;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + nome + " (Matrícula: " + matricula + " | e-mail: " + email + ")";
     }
 }

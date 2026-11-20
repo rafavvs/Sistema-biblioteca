@@ -1,4 +1,4 @@
-package model;
+package com.rafael.Sistema_biblioteca.Models;
 
 import java.time.LocalDate;
 
@@ -77,4 +77,14 @@ public class Emprestimo {
     public void setDataDevolucaoReal(LocalDate dataDevolucaoReal) {
         this.dataDevolucaoReal = dataDevolucaoReal;
     }
+
+    @Override
+    public String toString() {
+        String situacao = isAtivo()
+                ? "Em andamento (Previsto: " + dataDevolucaoPrevista + ")"
+                : "Devolvido em " + dataDevolucaoReal;
+        return String.format("ID: %d | Livro: %s | Usuário: %s | Retirada: %s | %s",
+                id, livro.getTitulo(), usuario.getNome(), dataRetirada, situacao);
+    }
+
 }

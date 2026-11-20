@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Empréstimos | Biblioteca</title></head>
+<body>
+<h1>Empréstimos</h1>
+<nav><a th:href="@{/livros}">Livros</a> <a th:href="@{/autores}">Autores</a> <a th:href="@{/categorias}">Categorias</a> <a th:href="@{/usuarios}">Usuários</a></nav>
+<p th:if="${mensagem}" th:text="${mensagem}"></p><p th:if="${erro}" th:text="${erro}"></p>
+<p><a th:href="@{/emprestimos/novo}">Registrar empréstimo</a></p>
+<p th:if="${#lists.isEmpty(emprestimos)}">Nenhum empréstimo registrado.</p>
+<table th:unless="${#lists.isEmpty(emprestimos)}">
+    <thead><tr><th>ID</th><th>Livro</th><th>Usuário</th><th>Retirada</th><th>Devolução prevista</th><th>Status</th><th>Ação</th></tr></thead>
+    <tbody><tr th:each="emprestimo : ${emprestimos}">
+        <td th:text="${emprestimo.id}"></td><td th:text="${emprestimo.livro.titulo}"></td>
+        <td th:text="${emprestimo.usuario.nome}"></td><td th:text="${emprestimo.dataRetirada}"></td>
+        <td th:text="${emprestimo.dataDevolucaoPrevista}"></td>
+        <td th:text="${emprestimo.ativo ? 'Ativo' : 'Devolvido'}"></td>
+        <td>
+            <a th:href="@{/emprestimos/{id}/editar(id=${emprestimo.id})}">Editar</a>
+            <form th:if="${emprestimo.ativo}" th:action="@{/emprestimos/{id}/devolver(id=${emprestimo.id})}" method="post"><button type="submit">Devolver</button></form>
+            <form th:action="@{/emprestimos/{id}/excluir(id=${emprestimo.id})}" method="post"><button type="submit">Excluir</button></form>
+        </td>
+    </tr></tbody>
+</table>
+</body>
+</html>

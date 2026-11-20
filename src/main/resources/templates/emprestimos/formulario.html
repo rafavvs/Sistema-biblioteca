@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Novo empréstimo | Biblioteca</title></head>
+<body>
+<h1>Registrar empréstimo</h1>
+<p th:if="${erro}" th:text="${erro}"></p>
+<form th:action="@{/emprestimos/salvar}" method="post">
+    <label>Livro disponível
+        <select name="isbn" required>
+            <option value="">Selecione</option>
+            <option th:each="livro : ${livros}" th:value="${livro.isbn}" th:text="${livro.titulo + ' (' + livro.isbn + ')'}"></option>
+        </select>
+    </label>
+    <label>Usuário
+        <select name="usuarioId" required>
+            <option value="">Selecione</option>
+            <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>
+        </select>
+    </label>
+    <label>Prazo em dias <input name="diasPrazo" type="number" min="1" required></label>
+    <button type="submit">Registrar</button>
+</form>
+<a th:href="@{/emprestimos}">Voltar</a>
+</body>
+</html>

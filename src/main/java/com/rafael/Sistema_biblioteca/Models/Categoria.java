@@ -1,4 +1,4 @@
-package Models;
+package com.rafael.Sistema_biblioteca.Models;
 
 public class Categoria {
     private String nome;
@@ -33,5 +33,10 @@ public class Categoria {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + nome + " (" + descricao + ")";
     }
 }

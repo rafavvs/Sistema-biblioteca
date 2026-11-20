@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${livro == null ? 'Novo livro' : 'Editar livro'}">Livro</title>
+</head>
+<body>
+<h1 th:text="${livro == null ? 'Cadastrar livro' : 'Editar livro'}">Livro</h1>
+<p th:if="${erro}" th:text="${erro}"></p>
+<form th:action="${livro == null ? '/livros/salvar' : '/livros/' + livro.isbn}" method="post">
+    <label>Título <input name="titulo" required th:value="${livro == null ? '' : livro.titulo}"></label>
+    <label>Autor <input name="autor" required th:value="${livro == null ? '' : livro.autor}"></label>
+    <label>ISBN
+        <input name="isbn" required th:value="${livro == null ? '' : livro.isbn}" th:readonly="${livro != null}">
+    </label>
+    <label>Categoria
+        <select name="categoriaId" required>
+            <option value="">Selecione</option>
+            <option th:each="categoria : ${categorias}"
+                    th:value="${categoria.id}"
+                    th:text="${categoria.nome}"
+                    th:selected="${livro != null and livro.categoria.id == categoria.id}"></option>
+        </select>
+    </label>
+    <button type="submit">Salvar</button>
+</form>
+<a th:href="@{/livros}">Voltar</a>
+</body>
+</html>
